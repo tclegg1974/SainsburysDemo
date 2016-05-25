@@ -1,5 +1,6 @@
 package com.example.dao;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Results {
@@ -8,7 +9,7 @@ public class Results {
 	private Double total=0.0;
 	
 	public List<Product> getResults() {
-		return results;
+		return Collections.unmodifiableList(results);
 	}
 	public void setResults(List<Product> results) {
 		this.results = results;
