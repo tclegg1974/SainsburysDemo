@@ -23,7 +23,7 @@ public class HTMLParserServiceImpl implements HTMLParserService {
 	private static String DemoURL = "http://hiring-tests.s3-website-eu-west-1.amazonaws.com/2015_Developer_Scrape/5_products.html";
 	
 	@Override
-	public Results parseHTML() {
+	public Results parseHTML() throws IOException {
 		Results results = new Results();
 		
 		try {
@@ -43,7 +43,7 @@ public class HTMLParserServiceImpl implements HTMLParserService {
 			}	
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw e;
 		}
 		return results;
 	}

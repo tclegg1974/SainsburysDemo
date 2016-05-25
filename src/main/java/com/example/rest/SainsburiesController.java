@@ -1,5 +1,7 @@
 package com.example.rest;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,7 +16,7 @@ public class SainsburiesController {
 	private HTMLParserService parser;
 	
 	@RequestMapping("/results")
-	public Results getResults() {
+	public Results getResults() throws IOException {
 		return parser.parseHTML();
 	}
 }
