@@ -31,9 +31,6 @@ public class HTMLParserServiceImpl implements HTMLParserService {
 			
 			Elements elems = getProducts(doc);
 			
-			
-			List<Product> products = new ArrayList<>();
-			
 			for(Element elem : elems) {
 				Product prod = new Product.ProductBuilder()
 						.title(getTitle(elem))
@@ -41,24 +38,14 @@ public class HTMLParserServiceImpl implements HTMLParserService {
 						.size(urlService.getHTMLSizeFromURL(getHrefURL(elem)))
 						.build();
 				
-				products.add(prod);
+				results.add(prod);
 				results.setTotal(results.getTotal() + prod.getUnit_price());
-			}
-			
-			results.setResults(products);
-			
-			
+			}	
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return results;
-	}
-
-	@Override
-	public void setHTMLToParse(String html) {
-		// TODO Auto-generated method stub
-		
 	}
 	
 	private Elements getProducts(Document doc) {
@@ -76,9 +63,7 @@ public class HTMLParserServiceImpl implements HTMLParserService {
 	private String getPricePerUnit(Element elem) {
 		String pricePerUnit = elem.select("p.priceperunit").get(0).text();
 				
-		String newString = pricePerUnit.replaceAll("&pound", "").replaceAll("/unit", "");
-		
-		return newString;
+		return pricePerUnit.replaceAll("&pound", "").replaceAll("/unit", "");
 	}
 
 	
